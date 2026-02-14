@@ -30,6 +30,29 @@ class TINY_URL:
 
 class DB:
     def __init__(self):
-        self.long_urls = {}
-        self.short_urls = {}
+        self.urls_objects = {} # id > objects
+        self.short_urls = {} # short to id
+        self.long_urls = {} # long to id
+
+    def set_long_and_short(self, url: TINY_URL)-> int:
+        self.urls_objects[url.id] = url
+        self.short_urls[url.shortUrl] = url.id
+        self.long_urls[url.long_url] = url.id
+
+        return url.id
+
+    def get_object_by_short(self, short: str) -> TINY_URL:
+        if short in self.short_urls:
+            return self.short_urls[short]
+        raise ValueError(f'url: {short} not found')
+
+    def get_object_by_long(self, long: str) ->TINY_URL:
+        if long in self.long_urls:
+            return self.long_urls[long]
+        raise ValueError(f'url: {long} not found')
+
+    def get_object_by_id(self, url_id: int)-> TINY_URL:
+        if url_id in self.urls_objects:
+            return self.urls_objects[url_id]
+        raise ValueError(f'url_id: {url_id} not found')
 
