@@ -13,6 +13,9 @@ run:
 test-endpoint:
 	curl http://localhost:8080/
 
+test-create-url:
+	curl -X POST http://localhost:8080/urls -H "Content-Type: application/json" -d '{"url": "https://example.com/some/long/path"}'
+
 .PHONY: test
 test:
 	.venv/bin/pytest test/
