@@ -20,6 +20,7 @@ class TestEncodeBase62:
         assert len(result) > 0
 
 
+
 class TestTinyURL:
     def test_init_sets_long_url(self):
         url = TINY_URL("https://example.com", 1)
